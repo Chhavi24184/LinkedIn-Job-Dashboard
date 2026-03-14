@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+instance/
+*.db
+.venv/
+venv/
+.env
+.hintrc
+latest_jobs.csv
