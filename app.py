@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
@@ -6,6 +7,9 @@ import io, base64
 import plotly.express as px
 import plotly.io as pio
 from extensions import db
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///jobs.db'
@@ -27,8 +31,9 @@ def fetch_live_jobs(query="Data Analyst", location="India", limit=10):
     print("🔍 Fetching jobs from LinkedIn API...")
 
     url = "https://jsearch.p.rapidapi.com/search"
+    api_key = os.getenv("RAPIDAPI_KEY", "your_api_key_here")
     headers = {
-        "x-rapidapi-key": "ba99c87b71msh82db2b7dbb6ee00p160458jsn10b67a0946c3",   # replace with your real key
+        "x-rapidapi-key": api_key,
         "x-rapidapi-host": "jsearch.p.rapidapi.com"
     }
     params = {"query": f"{query} {location}", "num_pages": 1}

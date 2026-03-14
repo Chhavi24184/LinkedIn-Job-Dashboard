@@ -1,6 +1,10 @@
 import requests
 import pandas as pd
+import os
 from extensions import db
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def fetch_linkedin_jobs(query="Data Analyst", location="India"):
     """
@@ -10,8 +14,9 @@ def fetch_linkedin_jobs(query="Data Analyst", location="India"):
     from app import Job
 
     url = "https://linkedin-data-api.p.rapidapi.com/search-jobs"
+    api_key = os.getenv("RAPIDAPI_KEY", "your_api_key_here")
     headers = {
-        "x-rapidapi-key": "ba99c87b71msh82db2b7dbb6ee00p160458jsn10b67a0946c3",  # replace with your key or .env variable
+        "x-rapidapi-key": api_key,
         "x-rapidapi-host": "linkedin-data-api.p.rapidapi.com"
     }
     params = {"keywords": query, "location": location, "limit": 10}

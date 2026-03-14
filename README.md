@@ -31,13 +31,12 @@ A Flask-based web application to fetch live job listings from LinkedIn using Rap
    ```bash
    pip install -r requirements.txt
    ```
-3. Set up your API key in `app.py`:
-   ```python
-   headers = {
-       "x-rapidapi-key": "YOUR_REAL_KEY",
-       "x-rapidapi-host": "jsearch.p.rapidapi.com"
-   }
-   ```
+3. Set up your API key:
+   - Create a `.env` file in the root directory.
+   - Add your RapidAPI key to the `.env` file:
+     ```env
+     RAPIDAPI_KEY=YOUR_REAL_KEY
+     ```
 4. Run the application:
    ```bash
    python app.py
